@@ -1,6 +1,6 @@
-import {settings, select, classNames, templates} from './settings.js';
-import utils from './utils.js';
-import CartProduct from '.CartProduct';
+import {settings, select, classNames, templates} from '../settings.js';
+import utils from '../utils.js';
+import CartProduct from './CartProduct.js';
 
 class Cart {
   constructor(element) {
@@ -8,10 +8,10 @@ class Cart {
 
     thisCart.products = [];
 
-    thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
-
     thisCart.getElements(element);
     thisCart.initActions();
+
+    thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
     //console.log('newCart',thisCart);
   }
 
@@ -104,10 +104,14 @@ class Cart {
     const generatedDOM = utils.createDOMFromHTML(generatedHTML);
     //console.log(generatedDOM);
 
+
+
     thisCart.dom.productList.appendChild(generatedDOM);
     //console.log('adding product', menuProduct);
     thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
     //console.log('thisCart.products', thisCart.products);
+
+    this.update();
   }
 
   update() {
