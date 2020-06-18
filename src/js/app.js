@@ -1,17 +1,29 @@
 import {settings, select, classNames} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
+import Booking from './components/Booking.js';
 
 const app = {
   initMenu: function(){
     const thisApp = this;
-    console.log('thisApp.data:', thisApp.data);
+    //console.log('thisApp.data:', thisApp.data);
     for (let productData in thisApp.data.products){
       new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
     }
   },
 
+  initCart: function() {
+    const thisApp = this;
 
+    const cartElem = document.querySelector(select.containerOf.cart);
+    thisApp.cart = new Cart(cartElem);
+
+    thisApp.productList = document.querySelector(select.containerOf.menu);
+
+    thisApp.productList.addEventListener('add-to-cart', function(event) {
+      app.cart.add(event.detail.product);
+    });
+  },
 
   initData: function(){
     const thisApp = this;
@@ -33,21 +45,12 @@ const app = {
       });
     //console.log('thisApp.data', JSON.stringify(thisApp.data));
 
-    thisApp.productList = document.querySelector(select.containerOf.menu);
 
-    thisApp.productList.addEventListener('add-to-cart', function(event){
-      app.cart.add(event.detail.producta);
-    });
   },
 
 
 
-  initCart: function(){
-    const thisApp = this;
 
-    const cartElem = document.querySelector(select.containerOf.cart);
-    thisApp.cart = new Cart(cartElem);
-  },
 
   init: function(){
     const thisApp = this;
@@ -62,6 +65,7 @@ const app = {
     thisApp.initData();
     //thisApp.initMenu();
     thisApp.initCart();
+    thisApp.initBooking();
   },
 
   initPages: function() {
@@ -111,10 +115,15 @@ const app = {
       );
     }
   },
+
+  initBooking: function(){
+    const thisApp = this;
+
+    const bookingElement = document.querySelector(select.containerOf.booking);
+    thisApp.booking = new Booking (bookingElement);
+
+  },
 };
 app.init();
-app.initData();
-app.initMenu();
 
-app.initCart();
 
