@@ -61,7 +61,7 @@ class Product {
       thisProduct.element.classList.toggle('active');
 
       /* find all active products */
-      const activeProducts = document.querySelectorAll(select.all.menuProductsActive);
+      const activeProducts = document.querySelectorAll('article.active');
       //console.log(activeProducts);
       /* START LOOP: for each active product */
       for(let activeProduct of activeProducts ){
@@ -181,22 +181,21 @@ class Product {
     const thisProduct = this;
 
     thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
-    thisProduct.amountWidgetElem.addEventListener('updated', function (event) {
-      event.preventDefault();
+    thisProduct.amountWidgetElem.addEventListener('updated', function () {
       thisProduct.processOrder();
     });
   }
 
-  addToCart(){
+  addToCart() {
     const thisProduct = this;
+
     thisProduct.name = thisProduct.data.name;
     thisProduct.amount = thisProduct.amountWidget.value;
-
 
     const event = new CustomEvent('add-to-cart', {
       bubbles: true,
       detail: {
-        Product: thisProduct,
+        product: thisProduct,
       },
     });
 
