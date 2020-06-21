@@ -1,6 +1,6 @@
 /* global Handlebars, dataSource */
 
-const utils = {};
+export const utils = {}; // eslint-disable-line no-unused-vars
 
 utils.createDOMFromHTML = function(htmlString) {
   let div = document.createElement('div');
@@ -42,6 +42,7 @@ utils.queryParams = function(params){
     .join('&');
 };
 
+
 utils.convertDataSourceToDbJson = function(){
   const productJson = [];
   for(let key in dataSource.products){
@@ -79,5 +80,3 @@ Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
 Handlebars.registerHelper('joinValues', function(input, options) {
   return Object.values(input).join(options.fn(this));
 });
-
-export default utils;

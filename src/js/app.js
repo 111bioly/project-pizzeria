@@ -3,6 +3,7 @@ import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
 
+
 const app = {
   initMenu: function(){
     const thisApp = this;
@@ -125,5 +126,12 @@ const app = {
   },
 };
 app.init();
+
+
+
+
+
+
+
 
 
