@@ -280,7 +280,48 @@ class Booking {
 
   }
 
+  rangeSlider(){
+    const thisBooking = this;
+    const bookedRange = thisBooking.booked[thisBooking.date];
+    const rangeSlider  = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.rangeSlider);
 
+    const hours = [];
+    const colors = [];
+
+    /* 12-05-2020 {
+      12: [1]
+      12.5: []
+      13: [1, 2]
+    }*/
+
+    for(let hour = settings.hours.open; hour <= settings.hours.close; hour=hour+0.5) {
+      hours.push(hour === 24 ? 0 : hour);
+    }
+
+    const acc = 100 / hours.length; //4
+    let startValue = 0; //8
+    let endValue = acc; //12
+
+    for(let hour of hours) {
+      if(!bookedRange[hour] || bookedRange[hour].length === 0 || bookedRange[hour].length === 1) {
+        colors.push(`green ${startValue}% ${endValue}%`);
+      }
+      else if (bookedRange[hour].length === 2) {
+        colors.push(`orange ${startValue}% ${endValue}%`);
+      } else {
+        colors.push(`red ${startValue}% ${endValue}%`);
+      }
+
+      startValue += acc;
+      endValue += acc;
+    }
+
+    const pushedColors = colors.join(', '); // 'red 20%, orange 20% 40%, yellow 40% 60%, green 60% 80%, blue 80%'; //
+    const test = 'linear-gradient(to right, ' + pushedColors + ')';
+    rangeSlider.style.background = test;
+    console.log(rangeSlider);
+
+  }
 
 
 }
