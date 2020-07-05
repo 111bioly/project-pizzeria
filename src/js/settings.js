@@ -1,9 +1,9 @@
-/*global Handlebars */
+/* eslint-disable no-undef */
 
 export const select = {
   templateOf: {
     menuProduct: '#template-menu-product',
-    cartProduct: '#template-cart-product',
+    cartProduct: '#template-cart-product', // ADDED
     bookingWidget: '#template-booking-widget',
   },
   containerOf: {
@@ -27,7 +27,7 @@ export const select = {
   },
   widgets: {
     amount: {
-      input: 'input.amount', // CODE CHANGED
+      input: 'input.amount', // CHANGED
       linkDecrease: 'a[href="#less"]',
       linkIncrease: 'a[href="#more"]',
     },
@@ -36,12 +36,14 @@ export const select = {
       input: `input[name="date"]`,
     },
     hourPicker: {
+      rangeSlider: '.rangeSlider__horizontal',
       wrapper: '.hour-picker',
       input: 'input[type="range"]',
       output: '.output',
+      rangeSliderFill: '.rangeSlider__fill__horizontal',
     },
   },
-
+  // CODE ADDED START
   cart: {
     productList: '.cart__order-summary',
     toggleTrigger: '.cart__summary',
@@ -60,13 +62,18 @@ export const select = {
     edit: '[href="#edit"]',
     remove: '[href="#remove"]',
   },
+  // CODE ADDED END
   booking: {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
+    phone: '.order-confirmation [type="tel"]',
+    email: '.order-confirmation [type="email"]',
+    submit: '.order-confirmation .btn-secondary',
+    starters: '.checkbox [type="checkbox"]',
   },
   nav: {
-    links: '.main-nav a',
+    links: '.main-nav a, .home-buttons a',
   },
 };
 
@@ -79,6 +86,7 @@ export const classNames = {
   cart: {
     wrapperActive: 'active',
   },
+  // CODE ADDED END
   booking: {
     loading: 'loading',
     tableBooked: 'booked',
@@ -100,18 +108,22 @@ export const settings = {
     defaultValue: 1,
     defaultMin: 1,
     defaultMax: 9,
-  }, // CODE CHANGED
+  }, //CODE CHANGED
   datePicker: {
     maxDaysInFuture: 14,
   },
+  // CODE ADDED START
   cart: {
     defaultDeliveryFee: 20,
   },
+  // CODE ADDED END
   booking: {
     tableIdAttribute: 'data-table',
   },
+
+  /* params configuration to connect with API */
   db: {
-    url: '//localhost:3131',
+    url: '//' + window.location.hostname + (window.location.hostname=='localhost' ? ':3131' : ''),
     product: 'product',
     order: 'order',
     booking: 'booking',
@@ -121,10 +133,28 @@ export const settings = {
     notRepeatParam: 'repeat=false',
     repeatParam: 'repeat_ne=false',
   },
+
+  tables: {
+    1: {
+      min: 2,
+      max: 4
+    },
+    2: {
+      min: 5,
+      max: 9
+    },
+    3: {
+      min: 2,
+      max: 4
+    }
+  }
+
 };
 
 export const templates = {
   menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
+  // CODE ADDED START
   cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
+  // CODE ADDED END
   bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML),
 };

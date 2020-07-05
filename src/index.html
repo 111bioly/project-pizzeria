@@ -21,12 +21,13 @@
           <h2 class="logo__subtitle">the best homemade Italian food</h2>
         </div>
         <div class="main-nav">
+          <a href="#home">Home</a>
           <a href="#order">Order</a>
           <a href="#booking">Booking</a>
         </div>
         <div id="cart" class="cart">
           <div class="cart__summary">
-            <span class="cart__total-number">5</span>
+            <span class="cart__total-number">0</span>
             <span class="cart__total-price">Total price: $<strong>0</strong></span>
             <i class="fas fa-chevron-down"></i>
             <i class="fas fa-shopping-cart cart__icon"></i>
@@ -62,9 +63,96 @@
   </header>
 
   <div id="pages">
+
+    <section id="home">
+      <div class="home-wrapper container">
+        <div class="home-page navigation">
+          <div class="home-buttons order">
+            <a href="order" class="nav-links order">order online</a>
+            <img src="images/assets/pizza-1.jpg" alt="pizza1">
+          </div>
+          <div class="home-buttons booking">
+            <a href="#booking" class="nav-links book">book a table</a>
+            <img src="images/assets/pizza-2.jpg" alt="pizza2">
+          </div>
+          <div class="home-hours">
+            <h2>OPENING HOURS</h2>
+            <p>TUE-SUN, 12PM-12AM</p>
+          </div>
+        </div>
+
+      <div class="home-carousel">
+        <div class="carousel-image">
+          <img src="images/assets/pizza-3.jpg" alt="pizza-3">
+        </div>
+        <div class="carousel-reviews">
+          <p class="review-title"></p>
+          <p class="reviev-content"></p>
+          <p class="review-author"></p>
+        </div>
+        <div class="carousel-dots">
+          <i id="1" class="fas fa-circle active"></i>
+          <i id="2" class="fas fa-circle"></i>
+          <i id="3" class="fas fa-circle"></i>
+        </div>
+      </div>
+
+      <div class="home-gallery">
+        <div class="gallery-img">
+          <img src="images/assets/pizza-4.jpg" alt="pizza-4">
+          <div class="gallery-icon overlay overlayFade">
+              <i class="fas fa-heart"></i>
+              <i class="fas fa-share-alt"></i>
+          </div>
+        </div>
+        <div class="gallery-img">
+            <img src="images/assets/pizza-5.jpg" alt="pizza-5">
+            <div class="gallery-icon overlay overlayFade">
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-share-alt"></i>
+          </div>
+        </div>
+        <div class="gallery-img">
+            <img src="images/assets/pizza-6.jpg" alt="pizza-6">
+            <div class="gallery-icon overlay overlayFade">
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-share-alt"></i>
+          </div>
+         </div>
+         <div class="gallery-img">
+            <img src="images/assets/pizza-7.jpg" alt="pizza-7">
+            <div class="gallery-icon overlay overlayFade">
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-share-alt"></i>
+          </div>
+          </div>
+          <div class="gallery-img">
+              <img src="images/assets/pizza-8.jpg" alt="pizza-8">
+              <div class="gallery-icon overlay overlayFade">
+                  <i class="fas fa-heart"></i>
+                  <i class="fas fa-share-alt"></i>
+            </div>
+          </div>
+          <div class="gallery-img">
+              <img src="images/assets/pizza-9.jpg" alt="pizza-9">
+              <div class="gallery-icon overlay overlayFade">
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-share-alt"></i>
+              </div>
+          </div>
+      </div>
+
+      <div class="footer">
+        <a href="#">View more on instagram</a>
+      </div>
+
+    </div>
+    </section>
+
     <section id="order">
       <div id="product-list" class="product-list container"></div>
     </section>
+
     <section id="booking">
       <div class="booking-wrapper container"></div>
     </section>
@@ -129,14 +217,14 @@
         </div>
         <div class="order-confirmation">
           <input type="tel" name="phone" placeholder="Your phone">
-          <input type="text" name="address" placeholder="Your address">
+          <input type="email" name="address" placeholder="Your email">
           <button type="submit" class="btn-secondary">Book table</button>
         </div>
       </form>
     </div>
   </script>
 
-  <script id="template-cart-product" type="text/x-handlebars-template">
+    <script id="template-cart-product" type="text/x-handlebars-template">
     <li>
       <div class="widget-amount"> <!-- widget-amount -->
         <a class="btn-quantity btn-quantity--lt" href="#less"><i class="fas fa-minus"></i></a>
@@ -164,84 +252,84 @@
     </li>
   </script>
 
-  <script id="template-menu-product" type="text/x-handlebars-template">
-    <article class="product"> <!-- product -->
+    <script id="template-menu-product" type="text/x-handlebars-template">
+      <article class="product"> <!-- product -->
 
-        <header class="product__header">
-          <h3 class="product__name no-spacing">{{ name }} <i class="fas fa-chevron-down product__icon"></i></h3>
-          <p class="product__base-price no-spacing">${{ price }}</p>
-        </header>
-        <div class="product__description"> <!-- description -->
-          <p>{{{ description }}}</p>
-        </div> <!-- .description -->
-        <div class="product__wrapper"> <!-- details -->
-          <form class="product__order">
-            <ul class="product__params"> <!-- params -->
-              {{#each params as |param paramId| }}
-              {{#ifEquals type "checkboxes"}}
-              <li> <!-- checkboxes -->
-                <h3 class="product__params-title">{{{ label }}}</h3>
-                {{#each options}}
-                <div class="checkbox"> <!-- checkbox -->
-                  <label>
-                    <input type="checkbox" name="{{ paramId }}" value="{{ @key }}" id="{{ @key }}" {{#if default}}checked{{/if}}>
-                    <span class="checkbox__checkmark"></span>
-                    {{{ label }}} (${{{ price }}})
-                  </label>
-                </div>
-                {{/each}}
-              </li>
-              {{/ifEquals}}
-              {{#ifEquals type "radios"}}
-              <li> <!-- radios -->
-                <h3 class="product__params-title">{{{ label }}}</h3>
-                {{#each options}}
-                <div class="checkbox checkbox--round"> <!-- radio -->
-                  <label>
-                    {{{ label }}} (${{{ price }}})
-                    <input type="radio" name="{{ paramId }}" value="{{ @key }}" id="{{ @key }}" {{#if default}}checked{{/if}}>
-                    <span class="checkbox__checkmark"></span>
-                  </label>
-                </div>
-                {{/each}}
-              </li>
-              {{/ifEquals}}
-              {{#ifEquals type "select"}}
-              <li> <!-- select -->
-                <h3 class="product__params-title">{{{ label }}}</h3>
-                <select name="{{ paramId }}">
+          <header class="product__header">
+            <h3 class="product__name no-spacing">{{ name }} <i class="fas fa-chevron-down product__icon"></i></h3>
+            <p class="product__base-price no-spacing">${{ price }}</p>
+          </header>
+          <div class="product__description"> <!-- description -->
+            <p>{{{ description }}}</p>
+          </div> <!-- .description -->
+          <div class="product__wrapper"> <!-- details -->
+            <form class="product__order">
+              <ul class="product__params"> <!-- params -->
+                {{#each params as |param paramId| }}
+                {{#ifEquals type "checkboxes"}}
+                <li> <!-- checkboxes -->
+                  <h3 class="product__params-title">{{{ label }}}</h3>
                   {{#each options}}
-                  <option value="{{ @key }}" {{#if default}}selected{{/if}}>{{{ label }}} (${{{ price }}})</option>
+                  <div class="checkbox"> <!-- checkbox -->
+                    <label>
+                      <input type="checkbox" name="{{ paramId }}" value="{{ @key }}" id="{{ @key }}" {{#if default}}checked{{/if}}>
+                      <span class="checkbox__checkmark"></span>
+                      {{{ label }}} (${{{ price }}})
+                    </label>
+                  </div>
                   {{/each}}
-                </select>
-              </li>
-              {{/ifEquals}}
+                </li>
+                {{/ifEquals}}
+                {{#ifEquals type "radios"}}
+                <li> <!-- radios -->
+                  <h3 class="product__params-title">{{{ label }}}</h3>
+                  {{#each options}}
+                  <div class="checkbox checkbox--round"> <!-- radio -->
+                    <label>
+                      {{{ label }}} (${{{ price }}})
+                      <input type="radio" name="{{ paramId }}" value="{{ @key }}" id="{{ @key }}" {{#if default}}checked{{/if}}>
+                      <span class="checkbox__checkmark"></span>
+                    </label>
+                  </div>
+                  {{/each}}
+                </li>
+                {{/ifEquals}}
+                {{#ifEquals type "select"}}
+                <li> <!-- select -->
+                  <h3 class="product__params-title">{{{ label }}}</h3>
+                  <select name="{{ paramId }}">
+                    {{#each options}}
+                    <option value="{{ @key }}" {{#if default}}selected{{/if}}>{{{ label }}} (${{{ price }}})</option>
+                    {{/each}}
+                  </select>
+                </li>
+                {{/ifEquals}}
+                {{/each}}
+              </ul>
+              <div class="amount"> <!-- controls -->
+                <div class="widget-amount"> <!-- widget-amount -->
+                  <h3 class="product__params-title">Select quantity</h3>
+                  <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
+                  <input class="amount" type="text">
+                  <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
+                </div>
+                <p class="product__total-price">
+                  Total: $<span class="price">{{{ price }}}</span>
+                </p>
+                <div> <!-- add-to-cart -->
+                  <a class="btn-primary" href="#add-to-cart">Add to cart</a>
+                </div>
+              </div>
+            </form>
+            <div class="product__images {{ class }}"> <!-- images -->
+              {{#each images}}
+              {{{ this }}}
               {{/each}}
-            </ul>
-            <div class="amount"> <!-- controls -->
-              <div class="widget-amount"> <!-- widget-amount -->
-                <h3 class="product__params-title">Select quantity</h3>
-                <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
-                <input class="amount" type="text">
-                <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
-              </div>
-              <p class="product__total-price">
-                Total: $<span class="price">{{{ price }}}</span>
-              </p>
-              <div> <!-- add-to-cart -->
-                <a class="btn-primary" href="#add-to-cart">Add to cart</a>
-              </div>
             </div>
-          </form>
-          <div class="product__images {{ class }}"> <!-- images -->
-            {{#each images}}
-            {{{ this }}}
-            {{/each}}
           </div>
-        </div>
 
-    </article> <!-- .product -->
-  </script>
+      </article> <!-- .product -->
+    </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
